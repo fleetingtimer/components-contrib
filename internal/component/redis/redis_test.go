@@ -42,6 +42,8 @@ const (
 	enableTLS             = "enableTLS"
 	failover              = "failover"
 	sentinelMasterName    = "sentinelMasterName"
+	sentinelUserName      = "sentinelUserName"
+	sentinelPassword      = "sentinelPassword"
 )
 
 func getFakeProperties() map[string]string {
@@ -66,6 +68,8 @@ func getFakeProperties() map[string]string {
 		idleCheckFrequency:    "1s",
 		failover:              "true",
 		sentinelMasterName:    "master",
+		sentinelUserName:      "sentinelUserName",
+		sentinelPassword:      "sentinelPassword",
 	}
 }
 
@@ -99,6 +103,8 @@ func TestParseRedisMetadata(t *testing.T) {
 		assert.Equal(t, 1*time.Second, time.Duration(m.IdleCheckFrequency))
 		assert.Equal(t, true, m.Failover)
 		assert.Equal(t, "master", m.SentinelMasterName)
+		assert.Equal(t, fakeProperties[sentinelUserName], m.SentinelUsername)
+		assert.Equal(t, fakeProperties[sentinelPassword], m.SentinelPassword)
 	})
 
 	t.Run("host is not given", func(t *testing.T) {

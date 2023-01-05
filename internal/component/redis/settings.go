@@ -74,6 +74,10 @@ type Settings struct {
 	SentinelMasterName string `mapstructure:"sentinelMasterName"`
 	// Use Redis Sentinel for automatic failover.
 	Failover bool `mapstructure:"failover"`
+	// The sentinel auth username.
+	SentinelUsername string `mapstructure:"sentinelUsername"`
+	// The sentinel auth password.
+	SentinelPassword string `mapstructure:"sentinelPassword"`
 
 	// A flag to enables TLS by setting InsecureSkipVerify to true
 	EnableTLS bool `mapstructure:"enableTLS"`
